@@ -18,6 +18,46 @@ class Biddings
      */
     private $id;
 
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUserId($user_id): void
+    {
+        $this->user_id = $user_id;
+    }
+
+    /**
+     * @param mixed $product_id
+     */
+    public function setProductId($product_id): void
+    {
+        $this->product_id = $product_id;
+    }
+
+    /**
+     * @param mixed $bid
+     */
+    public function setBid($bid): void
+    {
+        $this->bid = $bid;
+    }
+
+    /**
+     * @param mixed $max_bid
+     */
+    public function setMaxBid($max_bid): void
+    {
+        $this->max_bid = $max_bid;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
