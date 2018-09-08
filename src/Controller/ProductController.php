@@ -12,14 +12,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ListController extends Controller
-{
+class ProductController extends Controller {
 
     /**
-     * @Route("/", name="list_main")
+     * @Route("/product/{id}", name="list_product")
      */
-    public function list()
+    public function product()
     {
-        return $this->render('list/list.html.twig');
+        return $this->render('product/product.html.twig');
     }
 }
