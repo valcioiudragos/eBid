@@ -19,6 +19,25 @@ class Biddings
     private $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $product_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bid;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $max_bid;
+    /**
      * @param mixed $id
      */
     public function setId($id): void
@@ -64,21 +83,12 @@ class Biddings
     }
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $user_id;
-
-    /**
      * @return integer
      */
     public function getUserId()
     {
         return $this->user_id;
     }
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $product_id;
 
     /**
      * @return integer
@@ -90,22 +100,12 @@ class Biddings
     }
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $bid;
-
-    /**
      * @return integer
      */
     public function getBid()
     {
         return $this->bid;
     }
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $max_bid;
 
     /**
      * @return integer
