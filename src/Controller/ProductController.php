@@ -13,6 +13,8 @@ use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class ProductController extends Controller {
 
@@ -29,11 +31,12 @@ class ProductController extends Controller {
     /**
      * @Route("/product/{id}", name="list_product")
      */
-    public function product(Product $product)
+    public function product(Product $product, AuthenticationUtils $authenticationUtils)
     {
         return $this->render('product/product.html.twig',
         [
-            'product' => $product
+            'product' => $product,
+            'error' => $authenticationUtils->getLastAuthenticationError(),
         ]
         );
     }

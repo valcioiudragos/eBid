@@ -1,7 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block body %}
-    {% for product in products %}
-        {{ dump(product) }}
-    {% endfor %}
+{% block list %}
+    <div class="w3-main">
+
+        <div class="w3-hide-large" style="margin-top:83px"></div>
+
+        {% for product in products %}
+        <div class="w3-col s6" id="linie">
+                <div class="w3-container" id="container">
+                    <a href="product/{{ product.id }}"><img src="{{ product.img }}" /></a>
+                    <p>{{ product.title }}<b>{{ product.price }}</b></p>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="clear-cache" style="clear:both"></div>
+
 {% endblock %}

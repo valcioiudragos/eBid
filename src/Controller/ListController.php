@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class ListController extends Controller
 {
@@ -27,11 +28,13 @@ class ListController extends Controller
     /**
      * @Route("/", name="list_main")
      */
-    public function list()
+    public function list(AuthenticationUtils $authenticationUtils)
     {
         $products = $this->productRepository->findBy([], null, 10, 0);
         return $this->render('list/list.html.twig',
-            ['products' => $products]
+            ['products' => $products,
+             'error' => $authenticationUtils->getLastAuthenticationError(),
+            ]
         );
     }
 }

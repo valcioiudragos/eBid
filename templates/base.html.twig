@@ -10,11 +10,18 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% endblock %}
     </head>
-    <body>
+    <body class="w3-content" style="max-width:1200px">
+
     {{ include('misc/header.html.twig') }}
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        {% block form %}{% endblock %}
+
+        {% block list %}{% endblock %}
+        {% block product %}{% endblock %}
+
     {{ include('misc/footer.html.twig') }}
+        {% block javascripts %}{% endblock %}
+
+
+
+
     </body>
 </html>

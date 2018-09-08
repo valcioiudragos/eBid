@@ -1,85 +1,17 @@
-{#{% extends 'base.html.twig' %}#}
-
-{#{% block body %}#}
-    {#{% if error %}#}
-        {#<div class="alert alert-danger">#}
-            {#{{ error.messageKey|trans(error.messageData, 'security') }}#}
-        {#</div>#}
-    {#{% endif %}#}
-
-    {#<form action="{{ path('security_login') }}" method="post" class="w3-input w3-border">#}
-        {#<div>#}
-            {#<div class="w3-col s4">#}
-                {#<label class="form-control-label required" for="username">Username</label>#}
-                {#<input type="text" id="username" name="_username" required="required" class="w3-input w3-border">#}
-            {#</div>#}
-            {#<div class="w3-col s4">#}
-                {#<label class="form-control-label required" for="password">Password</label>#}
-                {#<input type="password" id="password" name="_password" required="required" class="w3-input w3-border">#}
-            {#</div>#}
-            {#<div class="w3-col s4">#}
-                {#<button type="submit" id="Login" name="Login" class="btn-secondary btn">Login</button>#}
-            {#</div>#}
-            {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">#}
-            {#<input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">#}
-        {#</div>#}
-    {#</form>#}
-{#{% endblock %}#}
-{% extends "base.html.twig" %}
-{% block body %}
-<!DOCTYPE html>
-<html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<body class="w3-content" style="max-width:1200px">
-
-<!-- Top menu on small screens -->
-<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-    <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main">
-
-    <!-- Push down content on small screens -->
-    <div class="w3-hide-large" style="margin-top:83px"></div>
-
-
-
-    <!-- Image header -->
-    <div class="w3-display-container w3-container">
-        <img src="/w3images/jeans.jpg" alt="Jeans" style="width:100%">
-        <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
-            <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
-            <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
-            <h1 class="w3-hide-small">COLLECTION 2016</h1>
-
+{% block login %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
-    </div>
-
-    <div class="w3-container w3-text-grey" id="jeans">
-        <p>8 items</p>
-    </div>
-
-    <!-- Product grid -->
-    {% for product in products %}
-        <div class="w3-col l3 s6">
-            <div class="w3-container">
-                <img src="{{ product.image }}" style="width:100%">
-                <p>{{ product.name }}<br><b>{{ product.price }}</b></p>
-            </div>
-    {% endfor %}
-            
-</div>
+    {% endif %}
 
 
+    <form action="{{ path('security_login') }}" method="post" class="w3-input w3-border" id="login-form">
+        <p><input class="w3-input w3-border" type="text" placeholder="Name" name="_username" id="username" required></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Password" name="_password" id="password" required></p>
+        <button type="submit" class="w3-button w3-block w3-black" id="Login" name="Login">Login</button>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
+    </form>
 
-</body>
-</html>
 {% endblock %}
