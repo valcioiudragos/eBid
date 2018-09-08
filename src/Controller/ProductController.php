@@ -9,12 +9,13 @@
 namespace App\Controller;
 
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ListController extends Controller
-{
+class ProductController extends Controller {
+
     /**
      * @var ProductRepository
      */
@@ -24,14 +25,16 @@ class ListController extends Controller
     {
         $this->productRepository = $productRepository;
     }
+
     /**
-     * @Route("/", name="list_main")
+     * @Route("/product/{id}", name="list_product")
      */
-    public function list()
+    public function product(Product $product)
     {
-        $products = $this->productRepository->findBy([], null, 10, 0);
-        return $this->render('list/list.html.twig',
-            ['products' => $products]
+        return $this->render('product/product.html.twig',
+        [
+            'product' => $product
+        ]
         );
     }
 }

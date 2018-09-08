@@ -1,1 +1,7 @@
 {% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for product in products %}
+        {{ dump(product) }}
+    {% endfor %}
+{% endblock %}
