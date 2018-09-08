@@ -29,12 +29,12 @@ class Biddings
     private $product_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $bid;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $max_bid;
     /**
@@ -70,7 +70,7 @@ class Biddings
     }
 
     /**
-     * @param mixed $max_bid
+     * @param float $max_bid
      */
     public function setMaxBid($max_bid): void
     {
@@ -100,7 +100,7 @@ class Biddings
     }
 
     /**
-     * @return integer
+     * @return float
      */
     public function getBid()
     {
@@ -108,7 +108,7 @@ class Biddings
     }
 
     /**
-     * @return integer
+     * @return float
      */
     public function getMaxBid()
     {
