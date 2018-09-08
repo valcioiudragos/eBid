@@ -734,5 +734,9 @@
 
 
 
-
+    <form action="{{ path('product_bid', {'id': product.id}) }}" method="post">
+        <input type="number" id="bid" name="bid">
+        <input type="number" id="max_bid" name="max_bid">
+        <button type="submit" id="append_bid">Bid</button>
+    </form>
 {% endblock %}
