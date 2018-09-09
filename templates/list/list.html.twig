@@ -8,8 +8,9 @@
         {% for product in products %}
         <div class="w3-col s6" id="linie">
                 <div class="w3-container" id="container">
-                    <a href="product/{{ product.id }}"><img src="{{ product.img }}" /></a>
-                    <p>{{ product.title }}<b>{{ product.price }}</b></p>
+                    <a href="product/{{ product.id }}"><img src="{{ product.img }}" />
+                    <p>{{ product.title[0:50] }}<b><p>Liciteaza!</p></b></p>
+                    </a>
                 </div>
         </div>
         {% endfor %}

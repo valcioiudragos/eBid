@@ -5,9 +5,10 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-9 padding-right">
+                <div class="col-sm-9">
                     <div class="product-details">
                         <div class="col-sm-5">
+                            <h2>{{ product.title }}</h2>
                             <div class="view-product">
                                 <img src="{{ product.img }}" alt=""/>
                             </div>
@@ -15,9 +16,8 @@
                         <div class="col-sm-7">
                             <div class="product-information">
 
-                                <h2>{{ product.title }}</h2>
                                 <p>ID: {{ product.id }}</p>
-
+                                <div class="w3-right">
                                 <span>
                                     <form action="{{ path('product_bid', {'id': product.id}) }}" method="post">
                                         <input type="number" id="bid" name="bid">
@@ -25,6 +25,7 @@
                                         <button type="submit" id="append_bid">Bid</button>
                                     </form>
 								</span>
+                                </div>
 
                             </div>
                         </div>
@@ -32,9 +33,7 @@
 
                     <div class="category-tab shop-details-tab">
                         <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li><a href="#details" data-toggle="tab">Details</a></li>
-                            </ul>
+                            <h3><b>Details</b></h3>
                         </div>
                         <div class="tab-content">
                             <p>{{ product.description }}</p>

@@ -5,14 +5,15 @@
         </div>
     {% endif %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <div id="username" class="w3-medium">
-        <p>Username: {{ app.user.username }}</p>
-            
+        <div id="username" class="w3-large">
+            <p class="w3-bold"><b>Welcome:</b>
+            {{ app.user.username }}</p>
+
         </div>
     {% else %}
-    <form action="{{ path('security_login') }}" method="post" class="w3-input w3-border" id="login-form">
-        <p><input class="w3-input w3-border" type="text" placeholder="Name" name="_username" id="username" required></p>
-        <p><input class="w3-input w3-border" type="password" placeholder="Password" name="_password" id="password" required></p>
+    <form action="{{ path('security_login') }}" method="post" class="w3-input" id="login-form">
+        <p><input class="w3-input" type="text" placeholder="Name" name="_username" id="username" required></p>
+        <p><input class="w3-input" type="password" placeholder="Password" name="_password" id="password" required></p>
         <button type="submit" class="w3-button w3-block w3-black" id="Login" name="Login">Login</button>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">

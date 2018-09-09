@@ -1,9 +1,12 @@
 
-<header class="w3-container w3-xlarge" id="header">
-    <img src="{{ asset('images/Logo.png') }}"/>
+<header class="w3-container w3-xlarge w3-light-grey" id="header">
+    <div id="logo" class="w3-left" style="padding-bottom: 15px"><img src="http://localhost:8080/images/Logo.png"/></div>
+
     <div class="w3-right">
         <div class="w3-small">
             {{ include('security/login.html.twig') }}
         </div>
     </div>
+
 </header>
+<div style="margin-bottom: 100px"></div>
