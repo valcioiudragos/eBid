@@ -60,6 +60,7 @@ class ProductController extends Controller
      */
     public function product(Product $product, AuthenticationUtils $authenticationUtils)
     {
+
         return $this->render('product/product.html.twig',
         [
             'product' => $product,
