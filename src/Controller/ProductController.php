@@ -85,16 +85,17 @@ class ProductController extends Controller
         if ($request->get('max_bid')) {
             $bidding->setMaxBid($request->get('max_bid'));
         }
+        $lowerBid = $this->biddingsRepository->finIfLowerBid($bidding->getProductId(), $bidding->getBid());
+        if (!$lowerBid) {
+            $this->entityManager->persist($bidding);
+            $this->entityManager->flush();
 
-        $this->entityManager->persist($bidding);
-        $this->entityManager->flush();
-
-        $newBidEvent = new BidEvent($bidding);
-        $eventDispatcher->dispatch(
-            BidEvent::NAME,
-            $newBidEvent
-        );
-
+            $newBidEvent = new BidEvent($bidding);
+            $eventDispatcher->dispatch(
+                BidEvent::NAME,
+                $newBidEvent
+            );
+        }
         return $this->redirectToRoute('product_list', ['id' => $product->getId()]);
     }
 }
