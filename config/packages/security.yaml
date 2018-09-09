@@ -20,7 +20,7 @@ security:
 
             form_login:
                 check_path: security_login
-                login_path: security_login
+                login_path: list_main
                 csrf_token_generator: security.csrf.token_manager
                 default_target_path: list_main
 

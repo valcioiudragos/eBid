@@ -18,6 +18,7 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,7 +85,11 @@ class ProductController extends Controller
         $bidding = new Biddings();
         $bidding->setUserId($currentUser->getId());
         $bidding->setProductId($product->getId());
-        if ($request->get('bid')) {
+        if($request->get('bid') == NULL)
+        {
+            return $this->redirectToRoute('product_list', ['id' => $product->getId(), 'error'=>'Bid-ul nu poate fi gol']);
+        }
+        elseif ($request->get('bid')) {
             $bidding->setBid($request->get('bid'));
         }
         if ($request->get('max_bid')) {

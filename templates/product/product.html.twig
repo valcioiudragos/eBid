@@ -17,12 +17,13 @@
                             <div class="product-information">
 
                                 <p>ID: {{ product.id }}</p>
-                                <div class="w3-right">
+                                <div class="w3-right" style="margin-top: -40%; margin-right: 20%; position: static">
                                 <span>
                                     <form action="{{ path('product_bid', {'id': product.id}) }}" method="post">
-                                        <input type="number" id="bid" name="bid">
-                                        <input type="number" id="max_bid" name="max_bid">
-                                        <button type="submit" id="append_bid">Bid</button>
+                                        <p>Bid</p><input type="number" id="bid" name="bid"><br/>
+                                        <p>Max Bid</p><input type="number" id="max_bid" name="max_bid"><br/><br/>
+                                        <p>Current price {{ product.price }} LEI</p>
+                                        <button type="submit" class="w3-button w3-block w3-red" id="append_bid">Bid</button>
                                     </form>
 								</span>
                                 </div>
