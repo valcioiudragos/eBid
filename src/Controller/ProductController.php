@@ -85,11 +85,9 @@ class ProductController extends Controller
         $bidding = new Biddings();
         $bidding->setUserId($currentUser->getId());
         $bidding->setProductId($product->getId());
-        if($request->get('bid') == NULL)
-        {
+        if($request->get('bid') == NULL) {
             return $this->redirectToRoute('product_list', ['id' => $product->getId(), 'error'=>'Bid-ul nu poate fi gol']);
-        }
-        elseif ($request->get('bid')) {
+        } else {
             $bidding->setBid($request->get('bid'));
         }
         if ($request->get('max_bid')) {
