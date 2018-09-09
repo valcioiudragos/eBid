@@ -4,8 +4,12 @@
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
-
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div id="username" class="w3-medium">
+        <p>Username: {{ app.user.username }}</p>
+            
+        </div>
+    {% else %}
     <form action="{{ path('security_login') }}" method="post" class="w3-input w3-border" id="login-form">
         <p><input class="w3-input w3-border" type="text" placeholder="Name" name="_username" id="username" required></p>
         <p><input class="w3-input w3-border" type="password" placeholder="Password" name="_password" id="password" required></p>
@@ -13,5 +17,6 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
     </form>
+    {% endif %}
 
 {% endblock %}
