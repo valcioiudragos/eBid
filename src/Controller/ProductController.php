@@ -12,11 +12,13 @@ namespace App\Controller;
 use App\Entity\Biddings;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Event\BidEvent;
 use App\Repository\BiddingsRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -69,7 +71,7 @@ class ProductController extends Controller
      * @Route("/product/bid/{id}", name="product_bid")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function bidProduct(Product $product, Request $request)
+    public function bidProduct(Product $product, Request $request, EventDispatcherInterface $eventDispatcher)
     {
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -86,6 +88,12 @@ class ProductController extends Controller
 
         $this->entityManager->persist($bidding);
         $this->entityManager->flush();
+
+        $newBidEvent = new BidEvent($bidding);
+        $eventDispatcher->dispatch(
+            BidEvent::NAME,
+            $newBidEvent
+        );
 
         return $this->redirectToRoute('product_list', ['id' => $product->getId()]);
     }
